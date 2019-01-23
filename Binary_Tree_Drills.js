@@ -22,8 +22,8 @@
 //         1    6
 //         \   / \
 //         2  5   9
-//             /
-//            7
+//               /
+//              7
 
 //Tree Class
 class BinarySearchTree {
@@ -64,7 +64,7 @@ class BinarySearchTree {
 
     else {
       if(this.right === null){
-        this.right = newBinarySearchTree(key, value, this);
+        this.right = new BinarySearchTree(key, value, this);
 
       }
       else {
@@ -207,8 +207,21 @@ class BinarySearchTree {
 }
   
   
+let myData = [3,1,4,6,9,2,5,7];
 
+function main(myData){
 
+  let BST = new BinarySearchTree();
+ 
+  for (let i = 0; i < myData.length; i++){
 
+    BST.insert(i,myData[i]);
 
+  }
 
+  return console.log('the tree: ', BST);
+  
+
+}
+
+main(myData);
