@@ -77,7 +77,6 @@ class BinarySearchTree {
 
   } 
 
-
   //find a key
   find(key){
 
@@ -195,7 +194,7 @@ class BinarySearchTree {
   _findMin(){
 
     if(!this.left){
-      return this;
+      return this.key;
     }
   
     return this.left._findMin();
@@ -206,13 +205,41 @@ class BinarySearchTree {
   _findMax(){
   
     if(!this.right){
-      return this;
+      return this.key;
     }
      
     return this.right._findMax();
 
   }
 
+  findThirdMax(myOne,myTwo,myThree){
+ 
+    if(!this.right){
+       
+      return myThree;
+ 
+    }
+    
+    myThree = myTwo;
+    myTwo = myOne;
+    myOne = this.right.key;
+    
+    return this.right.findThirdMax(myOne,myTwo,myThree);
+
+  }
+
+  //find the parent
+  findParent(){
+   
+    if(this.parent === null){
+ 
+      return this.key;
+
+    }
+
+    return this.parent.findParent();
+
+  }
 
   getHeight(count){
    
@@ -250,16 +277,47 @@ function main(myData){
   }
  
   //show the tree
-  //return console.log('the tree: ', BST);
+  console.log('------------------ START -------------------');
+
+  console.log('The tree: ', BST);
+
+  console.log('------------------- END --------------------');
  
   //find minimum key
-  // return console.log('minimum key:', BST._findMin());
+  console.log('minimum key:', BST._findMin());
 
   //find max key
-  //return console.log('maximum key:', BST._findMax());
+  console.log('maximum key:', BST._findMax());
 
   //Height of the BST -- always send value of 1 to count for parent
-  return console.log('the Height', BST.getHeight(0));
+  console.log('the Height', BST.getHeight());
+
+  //Find Parent
+  console.log('Tree Parent Key: ', BST.findParent());
+
+  //CheckBST(BST);
+
+  console.log('The third largest key: ',BST.findThirdMax());
+
+  //Is it BST?
+  function CheckBST(tree){
+
+    //get the parent node value
+    let parentValue = tree.findParent().value; 
+  
+    //get the highest value on the left
+
+
+    //get the highest value on the right
+
+
+    //make sure the left is < than parent and right is > than parent
+ 
+  }
+
+
+  //Third largest Node
+
    
 }
 
