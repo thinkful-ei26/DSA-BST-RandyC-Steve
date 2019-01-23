@@ -195,13 +195,35 @@ class BinarySearchTree {
   _findMin(){
 
     if(!this.left){
-
       return this;
-
     }
-
+  
     return this.left._findMin();
  
+  }
+
+  //find max
+  _findMax(){
+  
+    if(!this.right){
+      return this;
+    }
+     
+    return this.right._findMax();
+
+  }
+
+
+  getHeight(count){
+   
+    if(!this.right){
+      return count + 1;//the plus one is for the parent node
+    }
+     
+    count ++;
+
+    return this.right.getHeight(count);
+
   }
  
 }
@@ -209,19 +231,36 @@ class BinarySearchTree {
   
 let myData = [3,1,4,6,9,2,5,7];
 
+// function displayBST(){
+
+
+
+
+
+// }
+
 function main(myData){
 
   let BST = new BinarySearchTree();
  
   for (let i = 0; i < myData.length; i++){
 
-    BST.insert(i,myData[i]);
+    BST.insert(myData[i],myData[i]);
 
   }
+ 
+  //show the tree
+  //return console.log('the tree: ', BST);
+ 
+  //find minimum key
+  // return console.log('minimum key:', BST._findMin());
 
-  return console.log('the tree: ', BST);
-  
+  //find max key
+  //return console.log('maximum key:', BST._findMax());
 
+  //Height of the BST -- always send value of 1 to count for parent
+  return console.log('the Height', BST.getHeight(0));
+   
 }
 
 main(myData);
