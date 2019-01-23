@@ -241,15 +241,27 @@ class BinarySearchTree {
 
   }
 
-  getHeight(count){
+  // getHeight(count){
    
-    if(!this.right){
-      return count + 1;//the plus one is for the parent node
-    }
+  //   if(!this.right){
+  //     return count + 1;//the plus one is for the parent node
+  //   }
      
-    count ++;
+  //   count ++;
 
-    return this.right.getHeight(count);
+  //   return this.right.getHeight(count);
+
+  // }
+
+  getHeight(){
+
+   if(this.left === null) {
+
+    return 6;
+
+   }
+     
+   return 1;
 
   }
  
@@ -257,14 +269,7 @@ class BinarySearchTree {
   
   
 let myData = [3,1,4,6,9,2,5,7];
-
-// function displayBST(){
-
-
-
-
-
-// }
+ 
 
 function main(myData){
 
@@ -290,22 +295,21 @@ function main(myData){
   console.log('maximum key:', BST._findMax());
 
   //Height of the BST -- always send value of 1 to count for parent
-  console.log('the Height', BST.getHeight());
+  console.log('the Height', BST.getHeight(0));
 
   //Find Parent
   console.log('Tree Parent Key: ', BST.findParent());
 
   //CheckBST(BST);
-
-  console.log('The third largest key: ',BST.findThirdMax());
-
+ 
   //Is it BST?
   function CheckBST(tree){
 
     //get the parent node value
     let parentValue = tree.findParent().value; 
   
-    //get the highest value on the left
+    //check each value on the left to see if it is lower than its right value 
+    //and lower than the parent
 
 
     //get the highest value on the right
@@ -317,7 +321,7 @@ function main(myData){
 
 
   //Third largest Node
-
+  console.log('The third largest key: ',BST.findThirdMax());
    
 }
 
