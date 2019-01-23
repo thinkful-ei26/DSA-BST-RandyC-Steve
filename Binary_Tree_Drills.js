@@ -7,24 +7,23 @@
 //         3
 //        / \
 //       1   4
-//      /    \
-//     2      5
-//             \
-//             6
-//              \
-//              7
-//               \
-//                9
+//       \    \
+//        2   6
+//           / \
+//          5   9
+//             /
+//            7
+//
+//
 //         
-//         4
-//        / \
-//       1   5
-//      /     \
-//     2      6
-//             \
-//             7
-//              \
-//              9
+//         
+//            4
+//          /  \
+//         1    6
+//         \   / \
+//         2  5   9
+//             /
+//            7
 
 //Tree Class
 class BinarySearchTree {
@@ -37,7 +36,7 @@ class BinarySearchTree {
     this.right = null;
   }
 
-
+  //insert a key
   insert(key,value){
 
     if (this.key === null){
@@ -77,18 +76,90 @@ class BinarySearchTree {
     }
 
   } 
-  //remove
-
-  //find
 
 
+  //find a key
+  find(key){
+
+    if (this.key === key){
+      return this.value;
+    }
+
+    //if key arg is less than the current key then return left key
+    else if (key < this.key && this.left){
+
+      return this.left.find(key);
+
+    }
+
+    //if key arg is greater than the current key then return the right key
+    else if (key > this.key && this.right){
+
+      return this.right.find(key);
+
+    }
+
+    else{
+      throw new Error('Key Error');
+    }
 
   }
-  
-  
+
+  //remove a key
+  remove(key){
+
+    if (this.key === key){
+
+      if(this.left && this.right){
+
+        const successor = this.right._findMin();
+        this.key = successor.key;
+        this.value = successor.value;
+        successor.remove(successor.key);
+
+      }
+
+      else if(this.left){
+
+        this._replaceWith(this.left);
+
+      }
+
+      else if(this.right){
+
+        this.replaceWith(this.right);
+
+      }
+
+      else {
+        this.replaceWith(null);
+      }
+
+    }
+
+    else if(key < this.key && this.left){
+
+      this.left.remove(key);
+    }
+
+    else if(key > this.key && this.right){
+
+      this.right.remove(key);
+
+    }
+
+    else {
+      throw new Error ('Key Error');
+    }
+
+  }
+
 
 
 }
+  
+  
+
 
 
 
